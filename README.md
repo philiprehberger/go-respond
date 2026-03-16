@@ -83,6 +83,13 @@ respond.Problem(w, http.StatusForbidden,
 | `ErrorWithDetails(w, status, message, details)` | Write error with details |
 | `Problem(w, status, opts...)` | Write RFC 9457 Problem Details |
 
+## Development
+
+```bash
+go test ./...
+go vet ./...
+```
+
 ## License
 
 MIT
