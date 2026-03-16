@@ -1,5 +1,9 @@
 # go-respond
 
+[![CI](https://github.com/philiprehberger/go-respond/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/go-respond/actions/workflows/ci.yml)
+[![Go Reference](https://pkg.go.dev/badge/github.com/philiprehberger/go-respond.svg)](https://pkg.go.dev/github.com/philiprehberger/go-respond)
+[![License](https://img.shields.io/github/license/philiprehberger/go-respond)](LICENSE)
+
 HTTP JSON response helpers for Go. Write JSON responses in one line instead of five.
 
 ## Installation
