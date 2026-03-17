@@ -8,7 +8,7 @@ HTTP JSON response helpers for Go. Write JSON responses in one line instead of f
 
 ## Installation
 
-```sh
+```bash
 go get github.com/philiprehberger/go-respond
 ```
 
