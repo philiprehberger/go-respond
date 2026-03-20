@@ -150,3 +150,27 @@ func TestJSON_MarshalError(t *testing.T) {
 		t.Errorf("expected status %d, got %d", http.StatusInternalServerError, w.Code)
 	}
 }
+
+func TestValidationError(t *testing.T) {
+	w := httptest.NewRecorder()
+	ValidationError(w, map[string]string{
+		"email": "required",
+		"name":  "too short",
+	})
+	if w.Code != 422 {
+		t.Errorf("expected 422, got %d", w.Code)
+	}
+	var body map[string]any
+	json.Unmarshal(w.Body.Bytes(), &body)
+	if body["error"] != "Validation failed" {
+		t.Errorf("unexpected error: %v", body["error"])
+	}
+}
+
+func TestAccepted(t *testing.T) {
+	w := httptest.NewRecorder()
+	Accepted(w, map[string]string{"status": "processing"})
+	if w.Code != 202 {
+		t.Errorf("expected 202, got %d", w.Code)
+	}
+}

@@ -57,6 +57,27 @@ respond.ErrorWithDetails(w, http.StatusBadRequest, "validation failed", map[stri
 // {"error":{"status":400,"message":"validation failed","details":{"field":"email","reason":"invalid format"}}}
 ```
 
+### Validation Errors
+
+```go
+import respond "github.com/philiprehberger/go-respond"
+
+respond.ValidationError(w, map[string]string{
+    "email": "is required",
+    "age":   "must be positive",
+})
+// {"error":"Validation failed","details":{"email":"is required","age":"must be positive"}}
+```
+
+### Paginated Responses
+
+```go
+import respond "github.com/philiprehberger/go-respond"
+
+respond.Paginated(w, users, 100, 1, 20)
+// {"data":[...],"meta":{"total":100,"page":1,"pageSize":20,"pages":5}}
+```
+
 ### Problem Details (RFC 9457)
 
 ```go
@@ -81,6 +102,9 @@ respond.Problem(w, http.StatusForbidden,
 | `NoContent(w)` | Write 204 response |
 | `Error(w, status, message)` | Write structured error response |
 | `ErrorWithDetails(w, status, message, details)` | Write error with details |
+| `ValidationError(w, errors)` | Write 422 with field validation errors |
+| `Paginated[T](w, items, total, page, pageSize)` | Write 200 with pagination metadata |
+| `Accepted(w, data)` | Write 202 Accepted response |
 | `Problem(w, status, opts...)` | Write RFC 9457 Problem Details |
 
 ## Development

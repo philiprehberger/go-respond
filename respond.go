@@ -77,3 +77,29 @@ func ErrorWithDetails(w http.ResponseWriter, status int, message string, details
 		},
 	})
 }
+
+// ValidationError writes a 422 response with a list of field validation errors.
+func ValidationError(w http.ResponseWriter, errors map[string]string) {
+	JSON(w, http.StatusUnprocessableEntity, map[string]any{
+		"error":   "Validation failed",
+		"details": errors,
+	})
+}
+
+// Paginated writes a 200 response with items and pagination metadata.
+func Paginated[T any](w http.ResponseWriter, items []T, total int, page int, pageSize int) {
+	JSON(w, http.StatusOK, map[string]any{
+		"data": items,
+		"meta": map[string]any{
+			"total":    total,
+			"page":     page,
+			"pageSize": pageSize,
+			"pages":    (total + pageSize - 1) / pageSize,
+		},
+	})
+}
+
+// Accepted writes a 202 Accepted response, typically for async operations.
+func Accepted(w http.ResponseWriter, data any) {
+	JSON(w, http.StatusAccepted, data)
+}
