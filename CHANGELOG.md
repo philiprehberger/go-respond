@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1
+
+- Consolidate README badges onto single line, fix CHANGELOG format
+
 ## 0.2.0
 
 - Add `ValidationError` for structured validation error responses
@@ -11,7 +15,7 @@
 
 - Add Development section to README
 
-## 0.1.0 (2026-03-15)
+## 0.1.0
 
 - Initial release
 - JSON response helpers: JSON, OK, Created, NoContent
